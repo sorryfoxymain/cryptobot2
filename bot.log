@@ -1,0 +1,294 @@
+2025-05-29 20:26:42,600 - __main__ - INFO - Starting Wallet Monitor Bot...
+2025-05-29 20:26:42,600 - __main__ - WARNING - No wallets configured for tracking. Please add wallets to config.py
+2025-05-29 20:44:23,833 - __main__ - INFO - Starting Wallet Monitor Bot...
+2025-05-29 20:47:34,767 - __main__ - INFO - Starting Wallet Monitor Bot...
+2025-05-29 20:48:29,349 - __main__ - INFO - Starting Wallet Monitor Bot...
+2025-05-29 20:48:32,529 - __main__ - ERROR - Ошибка отправки сообщения в Telegram канал: 400 Client Error: Bad Request for url: https://api.telegram.org/bot7823259809:AAH7L9uBIVNfW_9hV6E393D8RL6FUKiCrEQ/sendMessage
+2025-05-29 20:48:32,540 - __main__ - ERROR - Не удалось отправить тестовое сообщение в Telegram
+2025-05-29 20:51:06,152 - __main__ - INFO - Starting Wallet Monitor Bot...
+2025-05-29 20:51:06,991 - __main__ - ERROR - Ошибка отправки сообщения в Telegram: 403 Client Error: Forbidden for url: https://api.telegram.org/bot7823259809:AAH7L9uBIVNfW_9hV6E393D8RL6FUKiCrEQ/sendMessage
+2025-05-29 20:51:06,993 - __main__ - ERROR - Не удалось отправить тестовое сообщение в Telegram
+2025-05-31 13:46:11,602 - __main__ - INFO - Bot started
+2025-05-31 13:46:53,775 - __main__ - ERROR - Error in main loop: Cannot connect to host api.telegram.org:443 ssl:default [Превышен таймаут семафора]
+2025-05-31 13:48:47,016 - __main__ - INFO - Bot starting...
+2025-05-31 13:48:47,020 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-05-31 13:48:47,021 - __main__ - ERROR - No token found in environment variables!
+2025-05-31 13:49:00,592 - __main__ - INFO - Bot starting...
+2025-05-31 13:49:00,593 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-05-31 13:49:00,594 - __main__ - ERROR - No token found in environment variables!
+2025-05-31 13:50:30,112 - __main__ - INFO - Bot starting...
+2025-05-31 13:50:30,113 - custom_telegram - INFO - CustomBot initialized with base URL: https://api.telegram.org/bot7823259809:AAH7L9uBIVNfW_9hV6E393D8RL6FUKiCrEQ
+2025-05-31 13:50:30,114 - __main__ - INFO - Bot initialized successfully
+2025-05-31 13:50:30,263 - __main__ - INFO - Received updates: {'ok': True, 'result': [{'update_id': 325033061, 'message': {'message_id': 21, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748697795, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}, {'update_id': 325033062, 'message': {'message_id': 22, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748697915, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}, {'update_id': 325033063, 'message': {'message_id': 23, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748697916, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}, {'update_id': 325033064, 'message': {'message_id': 24, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748697916, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}, {'update_id': 325033065, 'message': {'message_id': 25, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748697917, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}, {'update_id': 325033066, 'message': {'message_id': 26, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748697942, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}, {'update_id': 325033067, 'message': {'message_id': 27, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748697943, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}, {'update_id': 325033068, 'message': {'message_id': 28, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748697943, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}, {'update_id': 325033069, 'message': {'message_id': 29, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699182, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}, {'update_id': 325033070, 'message': {'message_id': 30, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699205, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}, {'update_id': 325033071, 'message': {'message_id': 31, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699206, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}, {'update_id': 325033072, 'message': {'message_id': 32, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699206, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}, {'update_id': 325033073, 'message': {'message_id': 33, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699275, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}, {'update_id': 325033074, 'message': {'message_id': 34, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699277, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}, {'update_id': 325033075, 'message': {'message_id': 35, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699277, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}, {'update_id': 325033076, 'message': {'message_id': 36, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699337, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}]}
+2025-05-31 13:50:30,264 - __main__ - INFO - Received message: /start from chat_id: 728351431
+2025-05-31 13:50:30,264 - custom_telegram - INFO - Sending message to chat_id 728351431: \U0001f44b Hi! I am your Crypto Wallet Monitor Bot.
+
+I can help you track your cryptocurrency wallets and not
+2025-05-31 13:50:30,429 - __main__ - INFO - Received message: /start from chat_id: 728351431
+2025-05-31 13:50:30,429 - custom_telegram - INFO - Sending message to chat_id 728351431: \U0001f44b Hi! I am your Crypto Wallet Monitor Bot.
+
+I can help you track your cryptocurrency wallets and not
+2025-05-31 13:50:30,572 - __main__ - INFO - Received message: /start from chat_id: 728351431
+2025-05-31 13:50:30,572 - custom_telegram - INFO - Sending message to chat_id 728351431: \U0001f44b Hi! I am your Crypto Wallet Monitor Bot.
+
+I can help you track your cryptocurrency wallets and not
+2025-05-31 13:50:30,717 - __main__ - INFO - Received message: /start from chat_id: 728351431
+2025-05-31 13:50:30,718 - custom_telegram - INFO - Sending message to chat_id 728351431: \U0001f44b Hi! I am your Crypto Wallet Monitor Bot.
+
+I can help you track your cryptocurrency wallets and not
+2025-05-31 13:50:30,863 - __main__ - INFO - Received message: /start from chat_id: 728351431
+2025-05-31 13:50:30,863 - custom_telegram - INFO - Sending message to chat_id 728351431: \U0001f44b Hi! I am your Crypto Wallet Monitor Bot.
+
+I can help you track your cryptocurrency wallets and not
+2025-05-31 13:50:31,035 - __main__ - INFO - Received message: /start from chat_id: 728351431
+2025-05-31 13:50:31,036 - custom_telegram - INFO - Sending message to chat_id 728351431: \U0001f44b Hi! I am your Crypto Wallet Monitor Bot.
+
+I can help you track your cryptocurrency wallets and not
+2025-05-31 13:50:31,240 - __main__ - INFO - Received message: /start from chat_id: 728351431
+2025-05-31 13:50:31,240 - custom_telegram - INFO - Sending message to chat_id 728351431: \U0001f44b Hi! I am your Crypto Wallet Monitor Bot.
+
+I can help you track your cryptocurrency wallets and not
+2025-05-31 13:50:31,453 - __main__ - INFO - Received message: /start from chat_id: 728351431
+2025-05-31 13:50:31,453 - custom_telegram - INFO - Sending message to chat_id 728351431: \U0001f44b Hi! I am your Crypto Wallet Monitor Bot.
+
+I can help you track your cryptocurrency wallets and not
+2025-05-31 13:50:31,642 - __main__ - INFO - Received message: /start from chat_id: 728351431
+2025-05-31 13:50:31,642 - custom_telegram - INFO - Sending message to chat_id 728351431: \U0001f44b Hi! I am your Crypto Wallet Monitor Bot.
+
+I can help you track your cryptocurrency wallets and not
+2025-05-31 13:50:31,863 - __main__ - INFO - Received message: /start from chat_id: 728351431
+2025-05-31 13:50:31,864 - custom_telegram - INFO - Sending message to chat_id 728351431: \U0001f44b Hi! I am your Crypto Wallet Monitor Bot.
+
+I can help you track your cryptocurrency wallets and not
+2025-05-31 13:50:32,094 - __main__ - INFO - Received message: /start from chat_id: 728351431
+2025-05-31 13:50:32,094 - custom_telegram - INFO - Sending message to chat_id 728351431: \U0001f44b Hi! I am your Crypto Wallet Monitor Bot.
+
+I can help you track your cryptocurrency wallets and not
+2025-05-31 13:50:32,342 - __main__ - INFO - Received message: /start from chat_id: 728351431
+2025-05-31 13:50:32,342 - custom_telegram - INFO - Sending message to chat_id 728351431: \U0001f44b Hi! I am your Crypto Wallet Monitor Bot.
+
+I can help you track your cryptocurrency wallets and not
+2025-05-31 13:50:32,572 - __main__ - INFO - Received message: /start from chat_id: 728351431
+2025-05-31 13:50:32,572 - custom_telegram - INFO - Sending message to chat_id 728351431: \U0001f44b Hi! I am your Crypto Wallet Monitor Bot.
+
+I can help you track your cryptocurrency wallets and not
+2025-05-31 13:50:32,736 - __main__ - INFO - Received message: /start from chat_id: 728351431
+2025-05-31 13:50:32,736 - custom_telegram - INFO - Sending message to chat_id 728351431: \U0001f44b Hi! I am your Crypto Wallet Monitor Bot.
+
+I can help you track your cryptocurrency wallets and not
+2025-05-31 13:50:32,876 - __main__ - INFO - Received message: /start from chat_id: 728351431
+2025-05-31 13:50:32,876 - custom_telegram - INFO - Sending message to chat_id 728351431: \U0001f44b Hi! I am your Crypto Wallet Monitor Bot.
+
+I can help you track your cryptocurrency wallets and not
+2025-05-31 13:50:33,044 - __main__ - INFO - Received message: /start from chat_id: 728351431
+2025-05-31 13:50:33,044 - custom_telegram - INFO - Sending message to chat_id 728351431: \U0001f44b Hi! I am your Crypto Wallet Monitor Bot.
+
+I can help you track your cryptocurrency wallets and not
+2025-05-31 13:50:47,455 - __main__ - INFO - Received updates: {'ok': True, 'result': [{'update_id': 325033077, 'message': {'message_id': 53, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699447, 'text': '/help', 'entities': [{'offset': 0, 'length': 5, 'type': 'bot_command'}]}}]}
+2025-05-31 13:50:47,456 - __main__ - INFO - Received message: /help from chat_id: 728351431
+2025-05-31 13:50:47,456 - custom_telegram - INFO - Sending message to chat_id 728351431: Available commands:
+
+/start - Start the bot
+/help - Show this help message
+/addwallet <address> - Ad
+2025-05-31 13:50:49,282 - __main__ - INFO - Received updates: {'ok': True, 'result': [{'update_id': 325033078, 'message': {'message_id': 55, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699449, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}]}
+2025-05-31 13:50:49,282 - __main__ - INFO - Received message: /start from chat_id: 728351431
+2025-05-31 13:50:49,282 - custom_telegram - INFO - Sending message to chat_id 728351431: \U0001f44b Hi! I am your Crypto Wallet Monitor Bot.
+
+I can help you track your cryptocurrency wallets and not
+2025-05-31 13:50:57,729 - __main__ - INFO - Received updates: {'ok': True, 'result': [{'update_id': 325033079, 'message': {'message_id': 57, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699457, 'text': '/balance', 'entities': [{'offset': 0, 'length': 8, 'type': 'bot_command'}]}}]}
+2025-05-31 13:50:57,729 - __main__ - INFO - Received message: /balance from chat_id: 728351431
+2025-05-31 13:50:57,729 - custom_telegram - INFO - Sending message to chat_id 728351431: I don't understand that command. Use /help to see available commands.
+2025-05-31 13:51:25,515 - __main__ - INFO - Received updates: {'ok': True, 'result': [{'update_id': 325033080, 'message': {'message_id': 59, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699485, 'text': '/balance 0x607d2381afecbd80c4ad5cce8059205c2a297966', 'entities': [{'offset': 0, 'length': 8, 'type': 'bot_command'}]}}]}
+2025-05-31 13:51:25,516 - __main__ - INFO - Received message: /balance 0x607d2381afecbd80c4ad5cce8059205c2a297966 from chat_id: 728351431
+2025-05-31 13:51:25,516 - custom_telegram - INFO - Sending message to chat_id 728351431: I don't understand that command. Use /help to see available commands.
+2025-05-31 13:51:29,406 - __main__ - INFO - Received updates: {'ok': True, 'result': [{'update_id': 325033081, 'message': {'message_id': 61, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699489, 'text': '0x607d2381afecbd80c4ad5cce8059205c2a297966'}}]}
+2025-05-31 13:51:29,406 - __main__ - INFO - Received message: 0x607d2381afecbd80c4ad5cce8059205c2a297966 from chat_id: 728351431
+2025-05-31 13:51:29,406 - custom_telegram - INFO - Sending message to chat_id 728351431: I don't understand that command. Use /help to see available commands.
+2025-05-31 13:51:38,728 - __main__ - INFO - Received updates: {'ok': True, 'result': [{'update_id': 325033082, 'message': {'message_id': 63, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699498, 'text': '/balance', 'entities': [{'offset': 0, 'length': 8, 'type': 'bot_command'}]}}]}
+2025-05-31 13:51:38,728 - __main__ - INFO - Received message: /balance from chat_id: 728351431
+2025-05-31 13:51:38,728 - custom_telegram - INFO - Sending message to chat_id 728351431: I don't understand that command. Use /help to see available commands.
+2025-05-31 13:51:41,657 - __main__ - INFO - Received updates: {'ok': True, 'result': [{'update_id': 325033083, 'message': {'message_id': 65, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699501, 'text': '/transactions', 'entities': [{'offset': 0, 'length': 13, 'type': 'bot_command'}]}}]}
+2025-05-31 13:51:41,657 - __main__ - INFO - Received message: /transactions from chat_id: 728351431
+2025-05-31 13:51:41,657 - custom_telegram - INFO - Sending message to chat_id 728351431: I don't understand that command. Use /help to see available commands.
+2025-05-31 13:51:45,309 - __main__ - INFO - Received updates: {'ok': True, 'result': [{'update_id': 325033084, 'message': {'message_id': 67, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699505, 'text': '/help', 'entities': [{'offset': 0, 'length': 5, 'type': 'bot_command'}]}}]}
+2025-05-31 13:51:45,309 - __main__ - INFO - Received message: /help from chat_id: 728351431
+2025-05-31 13:51:45,309 - custom_telegram - INFO - Sending message to chat_id 728351431: Available commands:
+
+/start - Start the bot
+/help - Show this help message
+/addwallet <address> - Ad
+2025-05-31 13:52:12,293 - __main__ - INFO - Received updates: {'ok': True, 'result': [{'update_id': 325033085, 'message': {'message_id': 69, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699532, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}]}
+2025-05-31 13:52:12,293 - __main__ - INFO - Received message: /start from chat_id: 728351431
+2025-05-31 13:52:12,293 - custom_telegram - INFO - Sending message to chat_id 728351431: \U0001f44b Hi! I am your Crypto Wallet Monitor Bot.
+
+I can help you track your cryptocurrency wallets and not
+2025-05-31 13:52:42,555 - __main__ - INFO - Received updates: {'ok': True, 'result': []}
+2025-05-31 13:53:12,654 - __main__ - INFO - Received updates: {'ok': True, 'result': []}
+2025-05-31 13:53:38,153 - __main__ - INFO - Received updates: {'ok': True, 'result': [{'update_id': 325033086, 'message': {'message_id': 71, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699618, 'text': '/help', 'entities': [{'offset': 0, 'length': 5, 'type': 'bot_command'}]}}]}
+2025-05-31 13:53:38,153 - __main__ - INFO - Received message: /help from chat_id: 728351431
+2025-05-31 13:53:38,153 - custom_telegram - INFO - Sending message to chat_id 728351431: Available commands:
+
+/start - Start the bot
+/help - Show this help message
+/addwallet <address> - Ad
+2025-05-31 13:56:42,978 - __main__ - INFO - Bot starting...
+2025-05-31 13:56:42,978 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-05-31 13:56:42,979 - __main__ - INFO - Starting bot with token: 78232...
+2025-05-31 13:56:42,979 - custom_telegram - INFO - CustomBot initialized with base URL: https://api.telegram.org/bot7823259809:AAH7L9uBIVNfW_9hV6E393D8RL6FUKiCrEQ
+2025-05-31 13:56:43,173 - __main__ - INFO - Bot authorized as: UnseeqChainSpy_bot
+2025-05-31 13:56:43,174 - __main__ - INFO - Starting message polling...
+2025-05-31 13:56:43,275 - __main__ - DEBUG - Received updates: {'ok': True, 'result': [{'update_id': 325033087, 'message': {'message_id': 73, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699749, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}, {'update_id': 325033088, 'message': {'message_id': 74, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699750, 'text': '/start', 'entities': [{'offset': 0, 'length': 6, 'type': 'bot_command'}]}}]}
+2025-05-31 13:56:43,275 - __main__ - INFO - Received message: '/start' from chat_id: 728351431
+2025-05-31 13:56:43,275 - __main__ - DEBUG - Executing start command for chat_id: 728351431
+2025-05-31 13:56:43,436 - __main__ - INFO - Received message: '/start' from chat_id: 728351431
+2025-05-31 13:56:43,436 - __main__ - DEBUG - Executing start command for chat_id: 728351431
+2025-05-31 13:56:49,363 - __main__ - DEBUG - Received updates: {'ok': True, 'result': [{'update_id': 325033089, 'message': {'message_id': 77, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699809, 'text': '/help', 'entities': [{'offset': 0, 'length': 5, 'type': 'bot_command'}]}}]}
+2025-05-31 13:56:49,364 - __main__ - INFO - Received message: '/help' from chat_id: 728351431
+2025-05-31 13:56:49,365 - __main__ - DEBUG - Executing help command for chat_id: 728351431
+2025-05-31 13:56:49,365 - custom_telegram - INFO - Sending message to chat_id 728351431: Available commands:
+
+/start - Start the bot
+/help - Show this help message
+/addwallet <address> - Ad
+2025-05-31 13:56:49,366 - custom_telegram - DEBUG - Making request to https://api.telegram.org/bot7823259809:AAH7L9uBIVNfW_9hV6E393D8RL6FUKiCrEQ/sendMessage with data: {'chat_id': 728351431, 'text': 'Available commands:\n\n/start - Start the bot\n/help - Show this help message\n/addwallet <address> - Add a wallet to monitor\n/removewallet <address> - Remove a wallet from monitoring\n/wallets - List monitored wallets\n/balance <address> - Get wallet balance\n/transactions <address> - Get recent transactions'}
+2025-05-31 13:56:49,513 - custom_telegram - DEBUG - Received response: {'ok': True, 'result': {'message_id': 78, 'from': {'id': 7823259809, 'is_bot': True, 'first_name': 'ChainSpy', 'username': 'UnseeqChainSpy_bot'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699809, 'text': 'Available commands:\n\n/start - Start the bot\n/help - Show this help message\n/addwallet <address> - Add a wallet to monitor\n/removewallet <address> - Remove a wallet from monitoring\n/wallets - List monitored wallets\n/balance <address> - Get wallet balance\n/transactions <address> - Get recent transactions', 'entities': [{'offset': 21, 'length': 6, 'type': 'bot_command'}, {'offset': 44, 'length': 5, 'type': 'bot_command'}, {'offset': 75, 'length': 10, 'type': 'bot_command'}, {'offset': 122, 'length': 13, 'type': 'bot_command'}, {'offset': 180, 'length': 8, 'type': 'bot_command'}, {'offset': 214, 'length': 8, 'type': 'bot_command'}, {'offset': 254, 'length': 13, 'type': 'bot_command'}]}}
+2025-05-31 13:56:53,516 - __main__ - DEBUG - Received updates: {'ok': True, 'result': [{'update_id': 325033090, 'message': {'message_id': 79, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699813, 'text': '/balance', 'entities': [{'offset': 0, 'length': 8, 'type': 'bot_command'}]}}]}
+2025-05-31 13:56:53,517 - __main__ - INFO - Received message: '/balance' from chat_id: 728351431
+2025-05-31 13:56:53,518 - __main__ - DEBUG - Executing balance command for chat_id: 728351431, address: None
+2025-05-31 13:56:53,518 - custom_telegram - INFO - Sending message to chat_id 728351431: Please provide a wallet address. Usage: /balance <address>
+2025-05-31 13:56:53,518 - custom_telegram - DEBUG - Making request to https://api.telegram.org/bot7823259809:AAH7L9uBIVNfW_9hV6E393D8RL6FUKiCrEQ/sendMessage with data: {'chat_id': 728351431, 'text': 'Please provide a wallet address. Usage: /balance <address>'}
+2025-05-31 13:56:53,682 - custom_telegram - DEBUG - Received response: {'ok': True, 'result': {'message_id': 80, 'from': {'id': 7823259809, 'is_bot': True, 'first_name': 'ChainSpy', 'username': 'UnseeqChainSpy_bot'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699813, 'text': 'Please provide a wallet address. Usage: /balance <address>', 'entities': [{'offset': 40, 'length': 8, 'type': 'bot_command'}]}}
+2025-05-31 13:56:57,339 - __main__ - DEBUG - Received updates: {'ok': True, 'result': [{'update_id': 325033091, 'message': {'message_id': 81, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699817, 'text': '/balance', 'entities': [{'offset': 0, 'length': 8, 'type': 'bot_command'}]}}]}
+2025-05-31 13:56:57,341 - __main__ - INFO - Received message: '/balance' from chat_id: 728351431
+2025-05-31 13:56:57,341 - __main__ - DEBUG - Executing balance command for chat_id: 728351431, address: None
+2025-05-31 13:56:57,341 - custom_telegram - INFO - Sending message to chat_id 728351431: Please provide a wallet address. Usage: /balance <address>
+2025-05-31 13:56:57,342 - custom_telegram - DEBUG - Making request to https://api.telegram.org/bot7823259809:AAH7L9uBIVNfW_9hV6E393D8RL6FUKiCrEQ/sendMessage with data: {'chat_id': 728351431, 'text': 'Please provide a wallet address. Usage: /balance <address>'}
+2025-05-31 13:56:57,587 - custom_telegram - DEBUG - Received response: {'ok': True, 'result': {'message_id': 82, 'from': {'id': 7823259809, 'is_bot': True, 'first_name': 'ChainSpy', 'username': 'UnseeqChainSpy_bot'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699817, 'text': 'Please provide a wallet address. Usage: /balance <address>', 'entities': [{'offset': 40, 'length': 8, 'type': 'bot_command'}]}}
+2025-05-31 13:57:11,223 - __main__ - DEBUG - Received updates: {'ok': True, 'result': [{'update_id': 325033092, 'message': {'message_id': 83, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699831, 'text': '/balance 0x607d2381afecbd80c4ad5cce8059205c2a297966', 'entities': [{'offset': 0, 'length': 8, 'type': 'bot_command'}]}}]}
+2025-05-31 13:57:11,224 - __main__ - INFO - Received message: '/balance 0x607d2381afecbd80c4ad5cce8059205c2a297966' from chat_id: 728351431
+2025-05-31 13:57:11,225 - __main__ - DEBUG - Executing balance command for chat_id: 728351431, address: 0x607d2381afecbd80c4ad5cce8059205c2a297966
+2025-05-31 13:57:11,225 - custom_telegram - INFO - Sending message to chat_id 728351431: Getting balance for address: 0x607d2381afecbd80c4ad5cce8059205c2a297966
+This feature will be impleme
+2025-05-31 13:57:11,226 - custom_telegram - DEBUG - Making request to https://api.telegram.org/bot7823259809:AAH7L9uBIVNfW_9hV6E393D8RL6FUKiCrEQ/sendMessage with data: {'chat_id': 728351431, 'text': 'Getting balance for address: 0x607d2381afecbd80c4ad5cce8059205c2a297966\nThis feature will be implemented soon.'}
+2025-05-31 13:57:11,464 - custom_telegram - DEBUG - Received response: {'ok': True, 'result': {'message_id': 84, 'from': {'id': 7823259809, 'is_bot': True, 'first_name': 'ChainSpy', 'username': 'UnseeqChainSpy_bot'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699831, 'text': 'Getting balance for address: 0x607d2381afecbd80c4ad5cce8059205c2a297966\nThis feature will be implemented soon.'}}
+2025-05-31 13:57:40,573 - __main__ - DEBUG - Received updates: {'ok': True, 'result': [{'update_id': 325033093, 'message': {'message_id': 85, 'from': {'id': 728351431, 'is_bot': False, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'language_code': 'uk'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699860, 'text': '/wallets', 'entities': [{'offset': 0, 'length': 8, 'type': 'bot_command'}]}}]}
+2025-05-31 13:57:40,574 - __main__ - INFO - Received message: '/wallets' from chat_id: 728351431
+2025-05-31 13:57:40,574 - __main__ - DEBUG - Executing wallets command for chat_id: 728351431
+2025-05-31 13:57:40,575 - custom_telegram - INFO - Sending message to chat_id 728351431: List of monitored wallets will be shown here.
+This feature will be implemented soon.
+2025-05-31 13:57:40,575 - custom_telegram - DEBUG - Making request to https://api.telegram.org/bot7823259809:AAH7L9uBIVNfW_9hV6E393D8RL6FUKiCrEQ/sendMessage with data: {'chat_id': 728351431, 'text': 'List of monitored wallets will be shown here.\nThis feature will be implemented soon.'}
+2025-05-31 13:57:40,701 - custom_telegram - DEBUG - Received response: {'ok': True, 'result': {'message_id': 86, 'from': {'id': 7823259809, 'is_bot': True, 'first_name': 'ChainSpy', 'username': 'UnseeqChainSpy_bot'}, 'chat': {'id': 728351431, 'first_name': 'Жора', 'username': 'holodnee4eminei', 'type': 'private'}, 'date': 1748699860, 'text': 'List of monitored wallets will be shown here.\nThis feature will be implemented soon.'}}
+2025-05-31 13:58:10,817 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 13:58:40,923 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 13:59:11,022 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 13:59:41,152 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:00:11,276 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:00:41,378 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:01:11,492 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:01:41,590 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:02:11,693 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:02:41,820 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:37:17,764 - __main__ - ERROR - Error in main loop: 
+Traceback (most recent call last):
+  File "C:\CryptoBOT\bot.py", line 199, in main
+    async with session.get(
+               ~~~~~~~~~~~^
+        f"{bot.base_url}/getUpdates",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        }
+        ^
+    ) as response:
+    ^
+  File "C:\Users\nikol\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 1187, in __aenter__
+    self._resp = await self._coro
+                 ^^^^^^^^^^^^^^^^
+  File "C:\Users\nikol\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 601, in _request
+    await resp.start(conn)
+  File "C:\Users\nikol\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client_reqrep.py", line 960, in start
+    with self._timer:
+         ^^^^^^^^^^^
+  File "C:\Users\nikol\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\helpers.py", line 735, in __exit__
+    raise asyncio.TimeoutError from None
+TimeoutError
+2025-05-31 14:37:52,978 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:38:23,076 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:38:53,175 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:39:23,279 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:39:53,388 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:40:23,494 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:40:53,597 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:41:23,694 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:41:53,818 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:42:23,922 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:42:54,069 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:43:24,167 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:43:54,274 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:44:24,386 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:44:54,487 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:45:24,587 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:45:54,684 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:46:24,789 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:46:54,887 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:47:24,991 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:47:55,103 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:48:25,205 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:48:55,315 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:49:25,415 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:49:55,533 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:50:25,651 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:50:55,751 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:51:25,865 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:51:55,991 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:52:26,102 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:52:56,202 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:53:26,306 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:53:56,408 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:54:26,513 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:54:56,619 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:55:26,743 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:55:56,846 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:56:26,957 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:56:57,058 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:57:27,170 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:57:57,273 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:58:27,375 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:58:57,480 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:59:27,592 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 14:59:57,687 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:00:27,806 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:00:57,900 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:01:28,005 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:01:58,125 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:02:28,227 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:02:58,337 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:03:28,437 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:03:58,553 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:04:28,656 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:04:58,776 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:05:28,917 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:05:59,022 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:06:29,157 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:06:59,256 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:07:29,358 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:07:59,462 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:08:29,564 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:08:59,668 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:09:29,777 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:09:59,887 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:10:30,000 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:11:01,102 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:11:31,210 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:12:01,318 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:12:31,439 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:13:01,558 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:13:31,677 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:14:01,793 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:14:31,903 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:15:02,014 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:15:32,128 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:16:02,248 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:16:32,350 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:17:02,463 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
+2025-05-31 15:17:32,570 - __main__ - DEBUG - Received updates: {'ok': True, 'result': []}
