@@ -1,98 +1,61 @@
+import os
 import logging
-import time
-from typing import List, Optional
-import sys
-from datetime import datetime
-import requests
 import asyncio
-
+import aiohttp
+from dotenv import load_dotenv
+from custom_telegram import CustomBot
 from moralis_api import MoralisAPI
-from storage import Storage, WalletTransaction
-from activity_analyzer import ActivityAnalyzer
-import config
+from storage import Storage
+from settings import SettingsManager
+from commands import CommandHandler
 
-# Configure logging
+# Load environment variables
+load_dotenv()
+
+# Enable logging with minimal output
 logging.basicConfig(
-    level=config.LOG_LEVEL,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    level=logging.DEBUG,
     handlers=[
-        logging.FileHandler(config.LOG_FILE),
-        logging.StreamHandler(sys.stdout)
+        logging.FileHandler('bot.log'),
     ]
 )
+
 logger = logging.getLogger(__name__)
 
 class WalletMonitorBot:
     def __init__(self):
-        self.moralis_api = MoralisAPI(config.MORALIS_API_KEY)
-        self.storage = Storage(config.DB_PATH)
-        self.analyzer = ActivityAnalyzer(self.moralis_api, self.storage)
-        
-    def send_telegram_message(self, message: str) -> bool:
-        """
-        Send message to the bot itself in Telegram
-        """
-        if not config.NOTIFICATION_CHANNELS['telegram']['enabled']:
-            return False
-            
-        bot_token = config.NOTIFICATION_CHANNELS['telegram']['bot_token']
-        bot_username = config.NOTIFICATION_CHANNELS['telegram']['bot_username']
-        
-        try:
-            # First get bot information
-            info_url = f"https://api.telegram.org/bot{bot_token}/getMe"
-            response = requests.get(info_url)
-            response.raise_for_status()
-            bot_info = response.json()
-            
-            if not bot_info.get('ok'):
-                logger.error("Failed to get bot information")
-                return False
-                
-            # Bot ID will be used as chat_id
-            bot_id = bot_info['result']['id']
-            
-            # Send message
-            url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
-            response = requests.post(url, json={
-                'chat_id': bot_id,  # Send message to the bot itself
-                'text': message,
-                'parse_mode': 'HTML'
-            })
-            response.raise_for_status()
-            return True
-            
-        except Exception as e:
-            logger.error(f"Error sending message to Telegram: {str(e)}")
-            return False
-        
-    def send_notification(self, message: str):
-        """
-        Send notifications through configured channels
-        """
-        if not config.ENABLE_NOTIFICATIONS:
-            return
-            
-        logger.info(f"Notification: {message}")
-        
-        # Send to Telegram
-        if config.NOTIFICATION_CHANNELS['telegram']['enabled']:
-            self.send_telegram_message(message)
-            
-        # TODO: Add other notification channels if needed
-        
-    async def process_transactions(self, transactions: List[WalletTransaction], wallet_address: str):
-        """
-        Process detected transactions
-        """
+        self.moralis_api = MoralisAPI(os.getenv('MORALIS_API_KEY'))
+        self.monitoring_enabled = True
+        self.notification_chat_ids = set()
+        self._initialized = False
+
+    @classmethod
+    async def create(cls) -> 'WalletMonitorBot':
+        """Create and initialize a new WalletMonitorBot instance."""
+        instance = cls()
+        await instance.initialize()
+        return instance
+
+    async def initialize(self):
+        """Initialize bot components."""
+        if not self._initialized:
+            self.storage = await Storage.create("wallet_monitor.db")
+            self.settings = await SettingsManager.create()
+            self.bot = CustomBot(os.getenv('TELEGRAM_BOT_TOKEN'))
+            self.command_handler = CommandHandler(self.storage, self.settings, self.moralis_api)
+            self._initialized = True
+
+    async def process_transactions(self, transactions, wallet_address: str):
+        """Process detected transactions"""
         for tx in transactions:
-            if tx.total_value_usd < config.MIN_TRANSACTION_VALUE_USD:
+            if tx.total_value_usd < 100:  # Минимальная сумма для уведомлений
                 continue
                 
             # Calculate PnL for sales
-            pnl: Optional[float] = None
+            pnl = None
             if tx.transaction_type == "sell":
-                pnl = await self.analyzer.calculate_pnl(tx)
+                pnl = await self.command_handler.analyzer.calculate_pnl(tx)
                 
             # Format message
             message = (
@@ -107,14 +70,14 @@ class WalletMonitorBot:
             if pnl is not None:
                 message += f"\nPnL: ${pnl:.2f}"
                 
-            self.send_notification(message)
-            
+            # Send notification to all subscribed chats
+            for chat_id in self.notification_chat_ids:
+                await self.bot.send_message(chat_id, message)
+
     async def monitor_wallet(self, wallet_address: str) -> bool:
-        """
-        Monitor a single wallet
-        """
+        """Monitor a single wallet"""
         try:
-            transactions = await self.analyzer.analyze_wallet(wallet_address)
+            transactions = await self.command_handler.analyzer.analyze_wallet(wallet_address)
             if transactions:
                 await self.process_transactions(transactions, wallet_address)
             return True
@@ -122,60 +85,205 @@ class WalletMonitorBot:
         except Exception as e:
             logger.error(f"Error monitoring wallet {wallet_address}: {str(e)}")
             return False
-            
-    async def run(self):
-        """
-        Main bot loop
-        """
-        logger.info("Starting Wallet Monitor Bot...")
+
+    async def monitor_wallets(self):
+        """Monitor all wallets in background"""
+        logger.info("Starting wallet monitoring...")
         
-        # Send test message on startup
-        test_message = "🔄 Bot started and ready to work!\n\nTracked wallets:\n"
-        for wallet in config.TRACKED_WALLETS:
-            test_message += f"• {wallet[:6]}...{wallet[-4:]}\n"
-        
-        if self.send_telegram_message(test_message):
-            logger.info("Test message successfully sent to Telegram")
-        else:
-            logger.error("Failed to send test message to Telegram")
-            return
-        
-        if not config.TRACKED_WALLETS:
-            logger.warning("No wallets configured for tracking. Please add wallets to config.py")
-            return
-            
         retry_count = 0
+        max_retries = 3
+        monitoring_interval = 60  # 1 minute
         
-        while True:
+        while self.monitoring_enabled:
             try:
-                for wallet in config.TRACKED_WALLETS:
+                wallets = self.storage.get_tracked_wallets()
+                
+                if not wallets:
+                    logger.debug("No wallets to monitor")
+                    await asyncio.sleep(monitoring_interval)
+                    continue
+                
+                for wallet in wallets:
                     logger.debug(f"Checking wallet: {wallet}")
                     success = await self.monitor_wallet(wallet)
                     
                     if not success:
                         retry_count += 1
-                        if retry_count >= config.MAX_RETRIES:
-                            logger.error("Max retries reached. Stopping bot.")
-                            return
+                        if retry_count >= max_retries:
+                            logger.error("Max retries reached for wallet monitoring")
+                            retry_count = 0
                     else:
                         retry_count = 0
                         
-                logger.debug(f"Sleeping for {config.MONITORING_INTERVAL} seconds...")
-                await asyncio.sleep(config.MONITORING_INTERVAL)
+                await asyncio.sleep(monitoring_interval)
                 
-            except KeyboardInterrupt:
-                logger.info("Bot stopped by user")
-                break
             except Exception as e:
-                logger.error(f"Unexpected error: {str(e)}")
-                retry_count += 1
-                if retry_count >= config.MAX_RETRIES:
-                    logger.error("Max retries reached. Stopping bot.")
-                    break
+                logger.error(f"Unexpected error in wallet monitoring: {str(e)}")
+                await asyncio.sleep(30)  # Wait 30 seconds before retry
+
+    async def message_handler(self, chat_id: int, text: str):
+        """Handle incoming messages."""
+        print(f"\nReceived message: '{text}' from chat_id: {chat_id}")
+        
+        if not text:
+            print("Received empty message")
+            return
+
+        try:
+            # Split message into command and arguments
+            parts = text.strip().split()
+            command = parts[0].lower() if parts else ""
+            args = parts[1:] if len(parts) > 1 else []
+            arg = args[0] if args else None
+
+            print(f"Command: {command}")
+            print(f"Arguments: {args}")
+            
+            # Command handling
+            response = None
+            
+            if command == '/start':
+                self.notification_chat_ids.add(chat_id)
+                response = '👋 Hi! I am your Crypto Wallet Monitor Bot.\n\nI can help you track your cryptocurrency wallets and notify you about important transactions.\n\nUse /help to see available commands.'
+            elif command == '/help':
+                response = await self.command_handler.handle_help()
+            elif command == '/status':
+                response = await self.command_handler.handle_status()
+            elif command == '/wallets':
+                response = await self.command_handler.handle_wallets()
+            elif command == '/addwallet':
+                response = await self.command_handler.handle_add_wallet(arg)
+            elif command == '/removewallet':
+                response = await self.command_handler.handle_remove_wallet(arg)
+            elif command == '/clearwallets':
+                response = await self.command_handler.handle_clear_wallets()
+            elif command == '/setchain':
+                response = await self.command_handler.handle_set_chain(arg)
+            elif command == '/notifications':
+                response = await self.command_handler.handle_notifications(arg)
+            elif command == '/settings':
+                response = await self.command_handler.handle_settings()
+            elif command == '/lasttx':
+                limit = int(arg) if arg and arg.isdigit() else 5
+                response = await self.command_handler.handle_last_transactions(limit)
+            elif command == '/walletinfo':
+                print(f"Processing /walletinfo command for address: {arg}")
+                response = await self.command_handler.handle_wallet_info(arg)
+                print(f"Wallet info response: {response}")
+            elif command == '/pnl':
+                response = await self.command_handler.handle_pnl(arg)
+            elif command == '/toptokens':
+                sort_by = args[1] if len(args) > 1 else 'value'
+                response = await self.command_handler.handle_top_tokens(arg, sort_by)
+            elif command == '/buys':
+                limit = int(args[1]) if len(args) > 1 and args[1].isdigit() else 5
+                response = await self.command_handler.handle_buys(arg, limit)
+            elif command == '/sells':
+                limit = int(args[1]) if len(args) > 1 and args[1].isdigit() else 5
+                response = await self.command_handler.handle_sells(arg, limit)
+            elif command == '/gas':
+                response = await self.command_handler.handle_gas(arg)
+            else:
+                response = "I don't understand that command. Use /help to see available commands."
+
+            if response:
+                print(f"Sending response: {response[:100]}...")
+                await self.bot.send_message(chat_id=chat_id, text=response)
+                
+        except Exception as e:
+            print(f"Error handling message: {str(e)}", exc_info=True)
+            await self.bot.send_message(
+                chat_id=chat_id,
+                text="Sorry, there was an error processing your command. Please try again."
+            )
+
+    async def run(self):
+        """Run bot with concurrent wallet monitoring and command handling"""
+        if not self._initialized:
+            await self.initialize()
+
+        logger.info("Starting Wallet Monitor Bot...")
+        
+        # Create task for wallet monitoring
+        monitoring_task = asyncio.create_task(self.monitor_wallets())
+        
+        # Test the bot token
+        try:
+            async with aiohttp.ClientSession() as session:
+                async with session.get(f"{self.bot.base_url}/getMe") as response:
+                    if response.status == 200:
+                        me = await response.json()
+                        if me.get('ok'):
+                            logger.info(f"Bot authorized as: {me['result']['username']}")
+                        else:
+                            logger.error(f"Bot authorization failed: {me}")
+                            return
+                    else:
+                        logger.error(f"Failed to authorize bot: {response.status}")
+                        return
+        except Exception as e:
+            logger.error(f"Error testing bot token: {str(e)}")
+            return
+
+        logger.info("Starting message polling...")
+        offset = 0
+        
+        try:
+            while True:
+                try:
+                    async with aiohttp.ClientSession() as session:
+                        async with session.get(
+                            f"{self.bot.base_url}/getUpdates",
+                            params={
+                                'offset': offset,
+                                'timeout': 30,
+                                'allowed_updates': ['message']
+                            }
+                        ) as response:
+                            if response.status != 200:
+                                error_text = await response.text()
+                                logger.error(f"Error from Telegram API: {response.status} - {error_text}")
+                                await asyncio.sleep(5)
+                                continue
+
+                            updates = await response.json()
+                            logger.debug(f"Received updates: {updates}")
+                            
+                            if updates.get('ok'):
+                                for update in updates.get('result', []):
+                                    offset = update['update_id'] + 1
+                                    
+                                    if 'message' in update and 'text' in update['message']:
+                                        message = update['message']
+                                        await self.message_handler(
+                                            message['chat']['id'],
+                                            message['text']
+                                        )
+                            else:
+                                logger.error(f"Update not OK: {updates}")
+                
+                except Exception as e:
+                    logger.error(f"Error in main loop: {str(e)}", exc_info=True)
+                    await asyncio.sleep(5)
                     
-                logger.info(f"Retrying in {config.RETRY_DELAY} seconds...")
-                await asyncio.sleep(config.RETRY_DELAY)
+        except KeyboardInterrupt:
+            logger.info("Bot stopped by user")
+        except Exception as e:
+            logger.error(f"Bot error: {str(e)}")
+        finally:
+            # Stop wallet monitoring
+            self.monitoring_enabled = False
+            monitoring_task.cancel()
 
 if __name__ == "__main__":
-    bot = WalletMonitorBot()
-    asyncio.run(bot.run()) 
+    logger.info("Bot starting...")
+    try:
+        async def main():
+            bot = await WalletMonitorBot.create()
+            await bot.run()
+        
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        logger.info("Bot stopped by user")
+    except Exception as e:
+        logger.error(f"Bot stopped due to error: {str(e)}", exc_info=True) 

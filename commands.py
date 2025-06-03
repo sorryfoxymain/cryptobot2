@@ -11,7 +11,7 @@ class CommandHandler:
         self.settings = settings
         self.analyzer = AnalyzerExtended(moralis_api, storage)
 
-    def handle_help(self) -> str:
+    async def handle_help(self) -> str:
         """Handle /help command."""
         commands = [
             ("/help", "List of all available commands"),
@@ -36,61 +36,70 @@ class CommandHandler:
             f"{cmd} - {desc}" for cmd, desc in commands
         )
 
-    def handle_status(self) -> str:
+    async def handle_status(self) -> str:
         """Handle /status command."""
-        wallets = self.storage.get_tracked_wallets()
-        settings = self.settings.get_settings()
+        wallets = await self.storage.get_tracked_wallets()
+        settings = await self.settings.get_settings()
         
         status_parts = [
             "🤖 Bot Status:",
             f"▫️ State: Running",
             f"▫️ Tracked wallets: {len(wallets)}",
-            f"▫️ Current network: {settings.chain}",
-            f"▫️ Notifications: {'Enabled' if settings.notifications_enabled else 'Disabled'}"
+            f"▫️ Current network: {settings['chain']}",
+            f"▫️ Notifications: {'Enabled' if settings['notifications_enabled'] else 'Disabled'}"
         ]
         
         return "\n".join(status_parts)
 
-    def handle_wallets(self) -> str:
+    async def handle_wallets(self) -> str:
         """Handle /wallets command."""
-        wallets = self.storage.get_tracked_wallets()
+        wallets = await self.storage.get_tracked_wallets()
         
         if not wallets:
-            return "📝 List of tracked wallets is empty"
+            return "📝 No wallets are currently being tracked"
         
-        return "📝 Tracked wallets:\n\n" + "\n".join(
-            f"▫️ {wallet}" for wallet in wallets
-        )
+        wallet_list = ["📝 Tracked wallets:\n"]
+        for i, wallet in enumerate(wallets, 1):
+            wallet_list.append(f"{i}. {wallet[:6]}...{wallet[-4:]}")
+        
+        return "\n".join(wallet_list)
 
-    def handle_add_wallet(self, address: str) -> str:
+    async def handle_add_wallet(self, address: str) -> str:
         """Handle /addwallet command."""
         if not address:
             return "❌ Error: Please specify wallet address"
+            
+        # Basic address validation
+        if not address.startswith('0x') or len(address) != 42:
+            return "❌ Error: Invalid wallet address format"
         
-        if self.storage.add_wallet(address):
-            return f"✅ Wallet {address} successfully added for tracking"
+        if await self.storage.add_wallet(address):
+            return f"✅ Wallet {address[:6]}...{address[-4:]} successfully added for tracking"
         else:
-            return f"❌ Wallet {address} is already being tracked"
+            return f"❌ Wallet {address[:6]}...{address[-4:]} is already being tracked"
 
-    def handle_remove_wallet(self, address: str) -> str:
+    async def handle_remove_wallet(self, address: str) -> str:
         """Handle /removewallet command."""
         if not address:
             return "❌ Error: Please specify wallet address"
         
-        if self.storage.remove_wallet(address):
-            return f"✅ Wallet {address} removed from tracking"
+        if await self.storage.remove_wallet(address):
+            return f"✅ Wallet {address[:6]}...{address[-4:]} removed from tracking"
         else:
-            return f"❌ Wallet {address} not found in tracked list"
+            return f"❌ Wallet {address[:6]}...{address[-4:]} not found in tracked list"
 
-    def handle_clear_wallets(self) -> str:
+    async def handle_clear_wallets(self) -> str:
         """Handle /clearwallets command."""
-        wallets = self.storage.get_tracked_wallets()
+        wallets = await self.storage.get_tracked_wallets()
+        if not wallets:
+            return "📝 No wallets to clear"
+            
         for wallet in wallets:
-            self.storage.remove_wallet(wallet)
+            await self.storage.remove_wallet(wallet)
         
-        return "✅ List of tracked wallets cleared"
+        return "✅ All wallets have been removed from tracking"
 
-    def handle_set_chain(self, chain: str) -> str:
+    async def handle_set_chain(self, chain: str) -> str:
         """Handle /setchain command."""
         if not chain:
             supported_chains = self.settings.get_supported_chains()
@@ -100,31 +109,31 @@ class CommandHandler:
         if chain not in self.settings.get_supported_chains():
             return f"❌ Unsupported network. Available networks: {', '.join(self.settings.get_supported_chains())}"
         
-        if self.settings.set_chain(chain):
+        if await self.settings.set_chain(chain):
             return f"✅ Network set to: {chain}"
         else:
             return "❌ Error setting network"
 
-    def handle_notifications(self, state: str) -> str:
+    async def handle_notifications(self, state: str) -> str:
         """Handle /notifications command."""
         if not state or state.lower() not in ['on', 'off']:
             return "❌ Please specify state (on/off)"
         
         enabled = state.lower() == 'on'
-        if self.settings.set_notifications(enabled):
+        if await self.settings.set_notifications(enabled):
             return f"✅ Notifications {'enabled' if enabled else 'disabled'}"
         else:
             return "❌ Error changing notification settings"
 
-    def handle_settings(self) -> str:
+    async def handle_settings(self) -> str:
         """Handle /settings command."""
-        settings = self.settings.get_settings()
+        settings = await self.settings.get_settings()
         
         settings_parts = [
             "⚙️ Current settings:",
-            f"▫️ Network: {settings.chain}",
-            f"▫️ Notifications: {'Enabled' if settings.notifications_enabled else 'Disabled'}",
-            f"▫️ Last updated: {datetime.fromtimestamp(settings.last_updated).strftime('%Y-%m-%d %H:%M:%S')}"
+            f"▫️ Network: {settings['chain']}",
+            f"▫️ Notifications: {'Enabled' if settings['notifications_enabled'] else 'Disabled'}",
+            f"▫️ Last updated: {datetime.fromtimestamp(settings['last_updated']).strftime('%Y-%m-%d %H:%M:%S')}"
         ]
         
         return "\n".join(settings_parts)
@@ -138,7 +147,7 @@ class CommandHandler:
         
         result = ["📝 Latest transactions:"]
         for tx in transactions:
-            action = "Purchase" if tx.transaction_type == "buy" else "Sale"
+            action = "🟢 Purchase" if tx.transaction_type == "buy" else "🔴 Sale"
             result.append(
                 f"▫️ {action}: {tx.amount_change:.4f} {tx.symbol} "
                 f"(${tx.total_value_usd:.2f}) - "
@@ -147,29 +156,71 @@ class CommandHandler:
         
         return "\n".join(result)
 
-    async def handle_wallet_info(self, wallet_address: str) -> str:
+    async def handle_wallet_info(self, address: str = None) -> str:
         """Handle /walletinfo command."""
-        if not wallet_address:
-            return "❌ Please specify wallet address"
+        print(f"\nHandling wallet info command for address: {address}")
         
-        wallet_info = await self.analyzer.get_wallet_info(wallet_address)
-        if not wallet_info:
-            return "❌ Failed to get wallet information"
+        try:
+            # If no address provided, use the first tracked wallet
+            if not address:
+                wallets = await self.storage.get_tracked_wallets()
+                if not wallets:
+                    return "❌ No wallets are being tracked. Add a wallet first using /addwallet command."
+                address = wallets[0]
+                print(f"No address provided, using first tracked wallet: {address}")
+
+            # Validate address format
+            if not self._is_valid_address(address):
+                return f"❌ Invalid wallet address format: {address}"
+
+            print("Getting wallet info from analyzer...")
+            wallet_info = await self.analyzer.get_wallet_info(address)
+            
+            if not wallet_info:
+                print("No wallet info returned from analyzer")
+                return f"❌ Could not fetch information for wallet {address}. Please try again later."
+
+            print(f"Received wallet info: {wallet_info}")
+            
+            # Format the response
+            lines = [
+                f"💼 Wallet information for {address[:6]}...{address[-4:]}:",
+                f"▫️ Total value: ${wallet_info.total_value_usd:.2f}",
+                "📊 Assets:"
+            ]
+
+            # Add token information
+            for token in wallet_info.tokens:
+                if token.total_value_usd > 0:  # Only show tokens with value
+                    token_line = (
+                        f"  • {token.symbol}: {token.amount:.4f} "
+                        f"(${token.total_value_usd:.2f})"
+                    )
+                    lines.append(token_line)
+
+            # If no tokens with value were found
+            if len(lines) == 3:
+                lines.append("  No assets found with value")
+
+            response = "\n".join(lines)
+            print(f"Formatted response: {response}")
+            return response
+
+        except Exception as e:
+            print(f"Error in handle_wallet_info: {str(e)}", exc_info=True)
+            return f"❌ Error processing wallet info: {str(e)}"
+
+    def _is_valid_address(self, address: str) -> bool:
+        """Validate Ethereum address format."""
+        if not address:
+            return False
         
-        result = [
-            f"💼 Wallet information for {wallet_address[:6]}...{wallet_address[-4:]}:",
-            f"▫️ Total value: ${wallet_info.total_value_usd:.2f}",
-            f"▫️ Total P&L: ${wallet_info.pnl_total_usd:.2f}",
-            "\n📊 Assets:"
-        ]
-        
-        for token in wallet_info.tokens:
-            result.append(
-                f"▫️ {token.symbol}: {token.amount:.4f} "
-                f"(${token.total_value_usd:.2f})"
-            )
-        
-        return "\n".join(result)
+        # Remove '0x' prefix if present
+        if address.startswith('0x'):
+            address = address[2:]
+            
+        # Check if it's a 40-character hex string
+        return len(address) == 40 and all(c in '0123456789abcdefABCDEF' for c in address)
 
     async def handle_pnl(self, wallet_address: str) -> str:
         """Handle /pnl command."""
@@ -241,7 +292,7 @@ class CommandHandler:
     async def handle_gas(self, chain: str = None) -> str:
         """Handle /gas command."""
         if not chain:
-            chain = self.settings.get_settings().chain
+            chain = self.settings.get_settings()['chain']
         
         gas_info = await self.analyzer.get_gas_fees(chain)
         if not gas_info:

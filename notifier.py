@@ -100,43 +100,4 @@ class TelegramNotifier:
                 parse_mode='HTML'
             )
         except TelegramError as e:
-            print(f"Failed to send Telegram notification: {str(e)}")
-
-# Example usage
-if __name__ == "__main__":
-    import os
-    from datetime import datetime
-    
-    # Usually this is in config.py
-    BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-    CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
-    
-    async def test_notifications():
-        notifier = TelegramNotifier(BOT_TOKEN, CHAT_ID)
-        
-        # Test transaction notification
-        test_transaction = WalletTransaction(
-            wallet_address="0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
-            token_id="eth",
-            symbol="ETH",
-            chain="eth",
-            amount_change=1.5,
-            price_usd=2000.0,
-            total_value_usd=3000.0,
-            transaction_type="buy",
-            timestamp=int(datetime.now().timestamp())
-        )
-        
-        await notifier.send_transaction_notification(test_transaction)
-        
-        # Test wallet list
-        test_wallets = [
-            "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
-            "0x1234567890123456789012345678901234567890"
-        ]
-        await notifier.send_wallet_list(test_wallets)
-    
-    if BOT_TOKEN and CHAT_ID:
-        asyncio.run(test_notifications())
-    else:
-        print("Please set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID environment variables") 
+            print(f"Failed to send Telegram notification: {str(e)}") 

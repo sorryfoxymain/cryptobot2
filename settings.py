@@ -1,7 +1,8 @@
-import sqlite3
+import aiosqlite
 from typing import List, Optional
 from dataclasses import dataclass
 from datetime import datetime
+import asyncio
 
 @dataclass
 class BotSettings:
@@ -12,63 +13,78 @@ class BotSettings:
 class SettingsManager:
     def __init__(self, db_path: str = "wallet_monitor.db"):
         self.db_path = db_path
-        self._init_db()
+        self._initialized = False
 
-    def _init_db(self):
+    @classmethod
+    async def create(cls, db_path: str = "wallet_monitor.db") -> 'SettingsManager':
+        """Create and initialize a new SettingsManager instance."""
+        instance = cls(db_path)
+        await instance.initialize()
+        return instance
+
+    async def initialize(self):
+        """Initialize the database if not already initialized."""
+        if not self._initialized:
+            await self._init_db()
+            self._initialized = True
+
+    async def _init_db(self):
         """Initialize settings table if it doesn't exist."""
-        with sqlite3.connect(self.db_path) as conn:
-            cursor = conn.cursor()
-            cursor.execute("""
+        async with aiosqlite.connect(self.db_path) as conn:
+            await conn.execute("""
                 CREATE TABLE IF NOT EXISTS bot_settings (
                     id INTEGER PRIMARY KEY CHECK (id = 1),
                     chain TEXT NOT NULL DEFAULT 'ETH',
-                    notifications_enabled BOOLEAN NOT NULL DEFAULT 1,
+                    notifications_enabled INTEGER NOT NULL DEFAULT 1,
                     last_updated INTEGER NOT NULL
                 )
             """)
             
             # Insert default settings if not exists
-            cursor.execute("""
+            await conn.execute("""
                 INSERT OR IGNORE INTO bot_settings (id, chain, notifications_enabled, last_updated)
                 VALUES (1, 'ETH', 1, ?)
             """, (int(datetime.now().timestamp()),))
             
-            conn.commit()
+            await conn.commit()
 
-    def get_settings(self) -> BotSettings:
+    async def get_settings(self):
         """Get current bot settings."""
-        with sqlite3.connect(self.db_path) as conn:
-            cursor = conn.cursor()
-            cursor.execute("SELECT chain, notifications_enabled, last_updated FROM bot_settings WHERE id = 1")
-            row = cursor.fetchone()
+        async with aiosqlite.connect(self.db_path) as conn:
+            cursor = await conn.execute("""
+                SELECT chain, notifications_enabled, last_updated
+                FROM bot_settings
+                WHERE id = 1
+            """)
+            row = await cursor.fetchone()
             if row:
-                return BotSettings(
-                    chain=row[0],
-                    notifications_enabled=bool(row[1]),
-                    last_updated=row[2]
-                )
-            return BotSettings("ETH", True, int(datetime.now().timestamp()))
+                return {
+                    'chain': row[0],
+                    'notifications_enabled': bool(row[1]),
+                    'last_updated': row[2]
+                }
+            return None
 
-    def set_chain(self, chain: str) -> bool:
+    async def set_chain(self, chain: str) -> bool:
         """Set the blockchain network to monitor."""
-        with sqlite3.connect(self.db_path) as conn:
-            cursor = conn.cursor()
-            cursor.execute("""
+        async with aiosqlite.connect(self.db_path) as conn:
+            cursor = await conn.execute("""
                 UPDATE bot_settings 
                 SET chain = ?, last_updated = ?
                 WHERE id = 1
             """, (chain.upper(), int(datetime.now().timestamp())))
+            await conn.commit()
             return cursor.rowcount > 0
 
-    def set_notifications(self, enabled: bool) -> bool:
+    async def set_notifications(self, enabled: bool) -> bool:
         """Enable or disable notifications."""
-        with sqlite3.connect(self.db_path) as conn:
-            cursor = conn.cursor()
-            cursor.execute("""
+        async with aiosqlite.connect(self.db_path) as conn:
+            cursor = await conn.execute("""
                 UPDATE bot_settings 
                 SET notifications_enabled = ?, last_updated = ?
                 WHERE id = 1
             """, (enabled, int(datetime.now().timestamp())))
+            await conn.commit()
             return cursor.rowcount > 0
 
     def get_supported_chains(self) -> List[str]:

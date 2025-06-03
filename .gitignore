@@ -1,9 +1,13 @@
+# Environment variables
+.env
+
 # Python
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
+env/
 build/
 develop-eggs/
 dist/
@@ -23,7 +27,6 @@ wheels/
 # Virtual Environment
 venv/
 ENV/
-env/
 
 # IDE
 .idea/
@@ -31,16 +34,15 @@ env/
 *.swp
 *.swo
 
-# Environment variables
-.env
+# Logs
+*.log
+logs/
+bot.log
 
 # Database
 *.db
 *.sqlite3
-
-# Logs
-*.log
-logs/
+wallet_monitor.db
 
 # Other
 .DS_Store
