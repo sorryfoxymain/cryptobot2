@@ -1,6 +1,6 @@
-# CryptoBot - Ethereum Wallet Monitor
+# CryptoBot
 
-A Telegram bot for monitoring Ethereum wallets and tracking cryptocurrency transactions in real-time.
+A Telegram bot for monitoring wallets and tracking cryptocurrency transactions in real-time.
 
 ## Features
 
